@@ -1,6 +1,8 @@
 import { BOOKING_TYPE } from "../../constants/bookingType";
 import { SportForm } from "./sportForm";
 
+// should these come from specific modules? helps modularity, SoC?
+// e.g. @booking/sports, @booking/movies, @booking/restaurant?
 const BOOKING_FORM = {
   [BOOKING_TYPE.SPORT]: <SportForm />,
 }

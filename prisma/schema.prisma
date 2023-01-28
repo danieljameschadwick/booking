@@ -10,7 +10,23 @@ datasource db {
     url      = env("ORM_CLIENT_URL")
 }
 
+// Foundationally, we should be link a booking/location to a site
+// which provides specific implementations per type e.g.:
+//   - sports: equipment, field/court/hall etc.
+//   - restaurants: table, allergens, etc.
+model Site {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
 model Booking {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Location {
     id        String   @id @default(auto()) @map("_id") @db.ObjectId
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
