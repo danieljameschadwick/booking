@@ -1,5 +1,12 @@
 import format from "date-fns/format";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { BOOKING_TYPE } from "../../constants/bookingType";
+
+/**
+ * Pass default type to props, or context?
+ */
+const bookingType = BOOKING_TYPE.SPORT;
 
 interface Booking {
   date: Date;
@@ -14,12 +21,12 @@ const SPORT_TYPE = {
 };
 
 export const SportForm = () => {
+  const router = useRouter();
   const [form, setForm] = useState<Booking>({
     date: new Date(),
     location: null,
     sport: SPORT_TYPE.BASKETBALL,
   });
-  console.log(form);
   const date = format(form.date, "yyyy-MM-dd");
 
   const handleSubmit = (event: React.FormEvent): void => {
@@ -27,6 +34,14 @@ export const SportForm = () => {
 
     console.log("handleSubmit");
     console.log(form);
+
+    router.push({
+      pathname: `/listing/${bookingType}`,
+      query: {
+        ...form,
+        date: format(form.date, "yyyy-MM-dd"),
+      },
+    });
   };
 
   return (

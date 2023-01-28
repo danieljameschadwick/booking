@@ -1,8 +1,5 @@
+import { BOOKING_TYPE } from "../../constants/bookingType";
 import { SportForm } from "./sportForm";
-
-const BOOKING_TYPE = {
-  SPORT: 'sport',
-};
 
 const BOOKING_FORM = {
   [BOOKING_TYPE.SPORT]: <SportForm />,
@@ -14,5 +11,6 @@ export const BookingForm = ({ type = BOOKING_TYPE.SPORT }) => {
   const form = BOOKING_FORM[type];
 
   if (!form) return null;
+
   return form;
 };

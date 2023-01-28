@@ -1,9 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { BookingForm } from "../components/booking/bookingForm";
-import { Header } from "../components/layout/header/header";
+import { useRouter } from "next/router";
+import { Header } from "../../components/layout/header/header";
 
 const Index: NextPage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <>
       <Head>
@@ -16,10 +19,10 @@ const Index: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            booking
+            venue
           </h1>
 
-          <BookingForm />
+          { id }
         </div>
       </main>
     </>
