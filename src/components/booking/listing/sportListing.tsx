@@ -25,7 +25,8 @@ export const SportListing = () => {
     //   pathname: `/location/${id}`,
     // })
 
-    // serialize query params to location
+    // serialize query params to location, 
+    // potentially change to <Link target="_blank" />
     window.open(`/location/${id}`, '_blank')
   };
 
