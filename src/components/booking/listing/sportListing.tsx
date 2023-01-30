@@ -19,23 +19,35 @@ export const SportListing = () => {
   return (
     <section className="flex flex-col gap-4">
       {locations.map((venue, index) => {
-        // split to component
+        const { id, name, address, image } = venue;
+
+        // @TODO: split to component
         return (
           <div key={index} className="bg-white p-8">
-            <div className="mb-2 flex flex-col">
-              <span className="mb-1 text-xl">{venue.name}</span>
+            <div className="flex">
+              {image && (
+                <div className="">
+                  <img src={image} className="max-w-sm" />
+                </div>
+              )}
 
-              <span className="text-base">{venue.address}</span>
-            </div>
+              <div className="flex flex-col flex-1 px-4">
+                <div className="mb-4 flex flex-1 flex-col">
+                  <span className="mb-1 text-xl font-semibold">{name}</span>
 
-            <div className="flex flex-row-reverse">
-              <button
-                type="submit"
-                className="focus:shadow-outline rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
-                onClick={() => handleBooking(venue.id)}
-              >
-                Book
-              </button>
+                  <span className="text-base">{address}</span>
+                </div>
+
+                <div className="flex flex-row-reverse">
+                  <button
+                    type="submit"
+                    className="focus:shadow-outline rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
+                    onClick={() => handleBooking(id)}
+                  >
+                    Book
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         );

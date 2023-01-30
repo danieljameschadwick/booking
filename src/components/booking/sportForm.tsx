@@ -32,9 +32,9 @@ export const SportForm = () => {
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
 
-    console.log("handleSubmit");
-    console.log(form);
-
+    // adding void before fixes this,
+    // but how to handle promise based handleSubmits
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.push({
       pathname: `/listing/${bookingType}`,
       query: {
@@ -93,6 +93,7 @@ export const SportForm = () => {
         <option value={SPORT_TYPE.NETBALL}>Netball</option>
       </select>
 
+      {/* @TODO: add common UI elements to a lib? */}
       <button
         type="submit"
         className="focus:shadow-outline rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
