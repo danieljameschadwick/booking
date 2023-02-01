@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Header } from "../../components/layout/header/header";
+import { Location } from "../../components/location/Location";
 import { getLocation } from "../../__mocks__/locations";
 
 const LocationIndex: NextPage = () => {
@@ -29,7 +30,7 @@ const LocationIndex: NextPage = () => {
     );
   }
 
-  const { name, address } = location;
+  const { name, address, image } = location;
 
   return (
     <>
@@ -41,9 +42,8 @@ const LocationIndex: NextPage = () => {
       <Header />
 
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="container flex flex-col mt-4">
-          <h1 className="mb-4 text-2xl text-white">{name}</h1>
-          <span className="text-base text-white">{address}</span>
+        <div className="mx-6 mt-4 flex flex-col">
+          <Location {...location} />
         </div>
       </main>
     </>
