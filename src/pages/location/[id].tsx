@@ -42,7 +42,7 @@ const LocationIndex: NextPage = () => {
       <Header />
 
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="mx-6 mt-4 flex flex-col">
+        <div className="my-6 mt-4 flex flex-col">
           <Location {...location} />
         </div>
       </main>
