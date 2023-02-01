@@ -5,17 +5,6 @@ export const SportListing = () => {
   const router = useRouter();
   console.log(router.query); // @TODO: debug
 
-  const handleBooking = (id: string) => {
-    // router.push does not support target _blank
-    // router.push({
-    //   pathname: `/location/${id}`,
-    // })
-
-    // serialize query params to location,
-    // potentially change to <Link target="_blank" />
-    window.open(`/location/${id}`, "_blank");
-  };
-
   return (
     <section className="flex flex-col gap-4">
       {locations.map((venue, index) => {
@@ -27,6 +16,7 @@ export const SportListing = () => {
             <div className="flex">
               {image && (
                 <div className="">
+                  {/* @TODO: convert to <Image /> */}
                   <img src={image} className="max-w-sm" />
                 </div>
               )}
@@ -39,13 +29,15 @@ export const SportListing = () => {
                 </div>
 
                 <div className="flex flex-row-reverse">
-                  <button
-                    type="submit"
+                  {/* // @TODO: convert to <Link /> */}
+                  <a
+                    href={`/location/${id}`}
+                    target="_blank"
+                    rel="noreferrer"
                     className="focus:shadow-outline rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
-                    onClick={() => handleBooking(id)}
                   >
                     Book
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
