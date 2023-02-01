@@ -5,7 +5,7 @@ interface Props {
 
 export const LocationBlock = ({ title = null, children }: Props) => {
   return (
-    <div className="mb-4">
+    <article className="mb-4">
       {title && (
         <div className="mb-2 bg-gray-200 p-2">
           <h2 className="text-xl">{title}</h2>
@@ -13,6 +13,6 @@ export const LocationBlock = ({ title = null, children }: Props) => {
       )}
 
       {children}
-    </div>
+    </article>
   );
 };

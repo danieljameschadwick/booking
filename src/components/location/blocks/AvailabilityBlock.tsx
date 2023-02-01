@@ -1,5 +1,13 @@
 import { LocationBlock } from "./LocationBlock";
 
+const DayView = () => {
+  return (
+    <div>
+      
+    </div>
+  );
+}
+
 export const AvailabilityBlock = () => {
   return (
     <LocationBlock title="Availabilty">

@@ -20,7 +20,7 @@ export const Location = ({ name, address, image = null }: Props) => {
   // const { name, address } = useLocation();
 
   return (
-    <>
+    <section>
       <LocationHeader name={name} address={address} />
 
       <div className="flex max-w-screen-lg flex-col flex-wrap items-start gap-4 lg:flex-row lg:flex-nowrap">
@@ -36,6 +36,6 @@ export const Location = ({ name, address, image = null }: Props) => {
           <BulkBookingBlock />
         </div>
       </div>
-    </>
+    </section>
   );
 };
