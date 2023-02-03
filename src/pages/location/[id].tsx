@@ -30,8 +30,6 @@ const LocationIndex: NextPage = () => {
     );
   }
 
-  const { name, address, image } = location;
-
   return (
     <>
       <Head>

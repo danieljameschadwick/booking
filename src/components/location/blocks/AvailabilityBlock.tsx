@@ -1,9 +1,21 @@
 import { LocationBlock } from "./LocationBlock";
 
-const TimeView = ({ from, to }: { from: string; to: string }) => {
+// @TODO: combine blocks for reusability (Arrow/Time)
+const ArrowBlock = () => {
+  return (
+    <div className="bg-gray-400 flex w-20 flex-col justify-center p-4 text-center">
+      <span className="text-white">
+        {/* // @TODO: icon library needed */}
+        {">"}
+      </span>
+    </div>
+  );
+};
+
+const TimeBlock = ({ from, to }: { from: string; to: string }) => {
   return (
     <div className="w-20 bg-gradient-to-b from-[#2e026d] to-[#15162c] p-4 text-center">
-      <span className="flex flex-col text-white">
+      <span className="flex flex-col items-center text-white">
         {from} - {to}
       </span>
     </div>
@@ -20,9 +32,12 @@ const DayView = ({ date }: { date: string }) => {
       </div>
 
       <div className="flex flex-row gap-1">
-        <TimeView from="10:00" to="11:00" />
-        <TimeView from="11:00" to="12:00" />
-        <TimeView from="12:00" to="13:00" />
+        <TimeBlock from="10:00" to="11:00" />
+        <TimeBlock from="11:00" to="12:00" />
+        <TimeBlock from="12:00" to="13:00" />
+        <TimeBlock from="13:00" to="14:00" />
+        <TimeBlock from="14:00" to="15:00" />
+        <TimeBlock from="15:00" to="16:00" />
       </div>
     </div>
   );
@@ -31,13 +46,14 @@ const DayView = ({ date }: { date: string }) => {
 // one component per file, however WIP calendar
 const AvailabilityCalendar = () => {
   return (
-    <>
+    <div className="flex flex-row flex-nowrap gap-2">
       <div className="flex flex-col gap-1">
         <DayView date="31/01" />
         <DayView date="01/01" />
         <DayView date="02/01" />
       </div>
-    </>
+      <ArrowBlock />
+    </div>
   );
 };
 
