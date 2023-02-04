@@ -1,6 +1,6 @@
 import { LocationBlock } from "./LocationBlock";
 
-export const DescriptionBlock = ({ description }) => {
+export const DescriptionBlock = ({ description }: { description: string }) => {
   // example for useContext
   // const { description } = useLocation();
 

@@ -1,9 +1,4 @@
-interface Location {
-  id: string;
-  name: string;
-  address: string;
-  image: string | null;
-}
+import type { Location } from "../types/location";
 
 const locations: Location[] = [
   {
