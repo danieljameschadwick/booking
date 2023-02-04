@@ -1,6 +1,10 @@
 import { LocationBlock } from "./LocationBlock";
 
-export const ImageBlock = ({ image }) => {
+interface Props {
+  image: string;
+}
+
+export const ImageBlock = ({ image }: Props) => {
   return (
     <LocationBlock>
       <img src={image} />

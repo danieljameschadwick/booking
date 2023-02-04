@@ -3,7 +3,7 @@ import { LocationBlock } from "./LocationBlock";
 // @TODO: combine blocks for reusability (Arrow/Time)
 const ArrowBlock = () => {
   return (
-    <div className="bg-gray-400 flex w-20 flex-col justify-center p-4 text-center">
+    <div className="flex w-20 flex-col justify-center bg-gray-400 p-4 text-center">
       <span className="text-white">
         {/* // @TODO: icon library needed */}
         {">"}
@@ -12,12 +12,29 @@ const ArrowBlock = () => {
   );
 };
 
-const TimeBlock = ({ from, to }: { from: string; to: string }) => {
+const TimeBlock = ({
+  from,
+  to,
+  price,
+}: {
+  from: string;
+  to: string;
+  price: number;
+}) => {
+  // @TODO: move to util e.g. import currencyFormatter from ..
+  const formattedPrice = new Intl.NumberFormat("en-GB", {
+    style: "currency", // @TODO: const style
+    currency: "GBP", // @TODO: currency const / user prefs or venue pref?
+  }).format(price);
+
   return (
     <div className="w-20 bg-gradient-to-b from-[#2e026d] to-[#15162c] p-4 text-center">
-      <span className="flex flex-col items-center text-white">
-        {from} - {to}
-      </span>
+      <div className="flex flex-col items-center gap-2">
+        <span className="text-white">
+          {from} - {to}
+        </span>
+        <span className="text-xs text-white">{formattedPrice}</span>
+      </div>
     </div>
   );
 };
@@ -32,12 +49,12 @@ const DayView = ({ date }: { date: string }) => {
       </div>
 
       <div className="flex flex-row gap-1">
-        <TimeBlock from="10:00" to="11:00" />
-        <TimeBlock from="11:00" to="12:00" />
-        <TimeBlock from="12:00" to="13:00" />
-        <TimeBlock from="13:00" to="14:00" />
-        <TimeBlock from="14:00" to="15:00" />
-        <TimeBlock from="15:00" to="16:00" />
+        <TimeBlock from="10:00" to="11:00" price={60} />
+        <TimeBlock from="11:00" to="12:00" price={60} />
+        <TimeBlock from="12:00" to="13:00" price={60} />
+        <TimeBlock from="13:00" to="14:00" price={60} />
+        <TimeBlock from="14:00" to="15:00" price={60} />
+        <TimeBlock from="15:00" to="16:00" price={60} />
       </div>
     </div>
   );

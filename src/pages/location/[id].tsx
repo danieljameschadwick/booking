@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Header } from "../../components/layout/header/header";
 import { Location } from "../../components/location/Location";
+import { LocationContext } from "../../state/location";
 import { getLocation } from "../../__mocks__/locations";
 
 const LocationIndex: NextPage = () => {
@@ -41,7 +42,9 @@ const LocationIndex: NextPage = () => {
 
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="my-6 mt-4 flex flex-col">
-          <Location {...location} />
+          <LocationContext.Provider value={location}>
+            <Location />
+          </LocationContext.Provider>
         </div>
       </main>
     </>

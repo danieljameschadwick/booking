@@ -1,9 +1,8 @@
-interface Props {
-  name: string;
-  address: string;
-}
+import { useLocation } from "../../../state/location";
 
-export const LocationHeader = ({ name, address }: Props) => {
+export const LocationHeader = () => {
+  const { name, address } = useLocation();
+
   return (
     <div className="mb-4 flex flex-col gap-2">
       <h1 className="text-3xl text-white">{name}</h1>
