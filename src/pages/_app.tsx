@@ -4,8 +4,13 @@ import { api } from "../utils/api";
 
 import "../styles/globals.css";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+const App: AppType = ({ Component, pageProps }) => {
+  return (
+    <>
+      <Component {...pageProps} />
+      <div id="portal-root" />
+    </>
+  );
 };
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(App);

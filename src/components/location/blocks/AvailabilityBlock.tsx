@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { BookingModal } from "../../booking/modal/bookingModal";
 import { LocationBlock } from "./LocationBlock";
 
 // @TODO: combine blocks for reusability (Arrow/Time)
@@ -21,21 +24,38 @@ const TimeBlock = ({
   to: string;
   price: number;
 }) => {
+  const [open, setOpen] = useState<boolean>(false);
   // @TODO: move to util e.g. import currencyFormatter from ..
   const formattedPrice = new Intl.NumberFormat("en-GB", {
     style: "currency", // @TODO: const style
     currency: "GBP", // @TODO: currency const / user prefs or venue pref?
   }).format(price);
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
   return (
-    <div className="w-20 bg-gradient-to-b from-[#2e026d] to-[#15162c] p-4 text-center">
-      <div className="flex flex-col items-center gap-2">
-        <span className="text-white">
-          {from} - {to}
-        </span>
-        <span className="text-xs text-white">{formattedPrice}</span>
+    <>
+      <div
+        className="w-20 bg-gradient-to-b from-[#2e026d] to-[#15162c] p-4 text-center"
+        onClick={handleClick}
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-white">
+            {from} - {to}
+          </span>
+          <span className="text-xs text-white">{formattedPrice}</span>
+        </div>
       </div>
-    </div>
+      {open &&
+        createPortal(
+          // should we handle this with a context, and reducer?
+          <BookingModal handleClose={() => setOpen(false)} />,
+          // best way to hook to document?
+          document.getElementById("portal-root")
+        )}
+    </>
   );
 };
 
