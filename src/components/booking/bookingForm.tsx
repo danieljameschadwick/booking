@@ -1,5 +1,5 @@
 import { BOOKING_TYPE } from "../../constants/bookingType";
-import { SportForm } from "./sportForm";
+import { SportForm } from "./SportForm";
 
 // should these come from specific modules? helps modularity, SoC?
 // e.g. @booking/sports, @booking/movies, @booking/restaurant?

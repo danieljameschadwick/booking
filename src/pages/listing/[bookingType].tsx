@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { SportListing } from "../../components/booking/listing/sportListing";
+import { SportListing } from "../../components/booking/listing/SportListing";
 import { Header } from "../../components/layout/header/header";
 import { BOOKING_TYPE } from "../../constants/bookingType";
 

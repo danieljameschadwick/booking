@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { BookingForm } from "../components/booking/bookingForm";
+import { BookingForm } from "../components/booking/BookingForm";
 import { Header } from "../components/layout/header/header";
 
 const Index: NextPage = () => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { BookingModal } from "../../booking/modal/bookingModal";
+import BookingModal from "../../booking/modal/BookingModal";
 import { LocationBlock } from "./LocationBlock";
 
 // @TODO: combine blocks for reusability (Arrow/Time)
