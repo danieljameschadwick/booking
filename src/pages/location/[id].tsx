@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Header } from "../../components/layout/header/header";
 import { Location } from "../../components/location/Location";
+import { BookingProvider } from "../../state/booking";
 import { LocationContext } from "../../state/location";
 import { getLocation } from "../../__mocks__/locations";
 
@@ -34,7 +35,8 @@ const LocationIndex: NextPage = () => {
   return (
     <>
       <Head>
-        <title>booking</title>
+        {/* // @TODO: SEO */}
+        <title>booking | { location.name }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -42,9 +44,12 @@ const LocationIndex: NextPage = () => {
 
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="my-6 mt-4 flex flex-col">
-          <LocationContext.Provider value={location}>
-            <Location />
-          </LocationContext.Provider>
+          {/* // @TODO: should we move this globally? or keep localised for performance */}
+          <BookingProvider>
+            <LocationContext.Provider value={location}>
+              <Location />
+            </LocationContext.Provider>
+          </BookingProvider>
         </div>
       </main>
     </>
