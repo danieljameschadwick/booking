@@ -14,17 +14,15 @@ interface Props {
 
 export const BookingModal = ({ handleClose }: Props) => {
   const ref = createRef<HTMLElement>();
-  const {
-    id,
-    name,
-  } = useLocation();
+  const location = useLocation();
   const { setBooking } = useBooking();
   const router = useRouter();
+  const { id, name } = location;
 
   useOnClickOutside(ref, () => handleClose());
 
   const handleRouting = async () => {
-    await router.push('/checkout');
+    await router.push("/checkout");
   };
 
   const handleCheckout = () => {
@@ -32,6 +30,7 @@ export const BookingModal = ({ handleClose }: Props) => {
       id,
       type: BOOKING_TYPE.SPORT, // @TODO: set this from landing page/form
       name,
+      location,
     });
 
     void handleRouting();
@@ -65,7 +64,7 @@ export const BookingModal = ({ handleClose }: Props) => {
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                  <div className="space-between flex w-full items-center border-b pb-2 mb-2">
+                  <div className="space-between mb-2 flex w-full items-center border-b pb-2">
                     <h2
                       className="flex-grow text-lg font-medium leading-6 text-gray-900"
                       id="modal-title"
@@ -83,7 +82,7 @@ export const BookingModal = ({ handleClose }: Props) => {
                     </button>
                   </div>
                   <div className="mb-2">
-                    <h3>{ name }</h3>
+                    <h3>{name}</h3>
                     {/* // @TODO: replace address with state */}
                     <span>Lupus Street, Westminster, London, SW1V 3AT</span>
                   </div>

@@ -93,7 +93,7 @@ export const SportForm = () => {
         <option value={SPORT_TYPE.NETBALL}>Netball</option>
       </select>
 
-      {/* @TODO: add common UI elements to a lib? */}
+      {/* @TODO: add common UI elements to a lib e.g. <Button />, <Input />? */}
       <button
         type="submit"
         className="focus:shadow-outline rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
