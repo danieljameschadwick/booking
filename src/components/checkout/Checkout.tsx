@@ -42,9 +42,14 @@ const Checkout = () => {
 // eslint-disable-next-line react/display-name, import/no-anonymous-default-export
 export default () => {
   const booking = useBooking();
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const { payment = null, setBooking } = booking;
+  const { clientSecret = null } = payment || {};
 
   useEffect(() => {
+    if (clientSecret) {
+      return;
+    }
+
     // @TODO: create PaymentIntent as soon as the page loads
     //   check if clientSecret already exists on booking (persisted on backend)
     //   if not, fetch,
@@ -59,9 +64,16 @@ export default () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setClientSecret(data.clientSecret);
+        const { clientSecret } = data;
+
+        setBooking((prevState) => ({
+          ...prevState,
+          payment: {
+            clientSecret,
+          },
+        }));
       });
-  }, []);
+  }, [clientSecret]);
 
   const options = {
     // passing the client secret obtained from the server
