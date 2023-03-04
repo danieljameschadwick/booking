@@ -55,7 +55,7 @@ export default () => {
       // @TODO: we need to sanitize data sent,
       //   only need totals/sub totals, booking ref doesnt exist yet
       //   can set booking ref in BE/API
-      body: JSON.stringify(booking),
+      body: JSON.stringify({ booking }),
     })
       .then((res) => res.json())
       .then((data) => {
