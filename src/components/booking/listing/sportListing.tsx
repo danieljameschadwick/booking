@@ -1,10 +1,6 @@
-import { useRouter } from "next/router";
 import locations from "../../../__mocks__/locations";
 
 export const SportListing = () => {
-  const router = useRouter();
-  console.log(router.query); // @TODO: debug
-
   return (
     <section className="flex flex-col gap-4">
       {locations.map((venue, index) => {

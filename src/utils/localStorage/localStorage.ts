@@ -13,8 +13,9 @@ export const getLocalStorage = <T>(key: string, initialValue: T): T => {
 export const setLocalStorage = <T>(key: string, value: T) => {
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
-  } catch (e) {
+  } catch (error) {
     // catch possible errors:
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+    console.error(error);
   }
 }

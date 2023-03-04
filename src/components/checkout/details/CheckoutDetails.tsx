@@ -1,7 +1,19 @@
 import { useBooking } from "../../../state/booking";
+import { useCheckoutForm } from "../form/CheckoutFormContext";
 
 export const CheckoutDetails = () => {
-  const { date, location } = useBooking();
+  const { resetCheckoutForm } = useCheckoutForm();
+  const { date, location, resetBooking } = useBooking();
+
+  const handleCancel = () => {
+    // reset steps
+    resetCheckoutForm();
+    // reset booking
+    resetBooking(false, true);
+
+    // redirect to location page
+    // router.push();
+  }
 
   return (
     <section className="flex flex-col bg-white p-6">
@@ -69,7 +81,7 @@ export const CheckoutDetails = () => {
         {/* this is enabled when we have the details from the form submitted */}
         <button
           type="submit"
-          className="focus:shadow-outline mt-2 rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
+          className="focus:shadow-outline rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
           disabled
         >
           Checkout
@@ -78,7 +90,7 @@ export const CheckoutDetails = () => {
         <button
           type="submit"
           className="focus:shadow-outline mt-2 rounded bg-[hsl(280,100%,70%)] py-2 px-4 font-bold text-white hover:bg-[hsl(280,100%,50%)] focus:outline-none"
-          disabled
+          onClick={handleCancel}
         >
           Cancel
         </button>

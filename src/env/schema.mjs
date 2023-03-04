@@ -8,6 +8,7 @@ import { z } from "zod";
 export const serverSchema = z.object({
   ORM_CLIENT_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  STRIPE_PUBLIC_KEY: z.string(),
 });
 
 /**
@@ -18,6 +19,7 @@ export const serverSchema = z.object({
 export const serverEnv = {
   ORM_CLIENT_URL: process.env.ORM_CLIENT_URL,
   NODE_ENV: process.env.NODE_ENV,
+  STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
 };
 
 /**
@@ -26,7 +28,8 @@ export const serverEnv = {
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  // NEXT_PUBLIC_CLIENTVAR: z.string(),
+  NEXT_PUBLIC_STRIPE_URL: z.string(),
+  NEXT_PUBLIC_STRIPE_PUBLIC_KEY: z.string(),
 });
 
 /**
@@ -36,5 +39,6 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
-  // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  NEXT_PUBLIC_STRIPE_PUBLIC_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
+  NEXT_PUBLIC_STRIPE_URL: process.env.NEXT_PUBLIC_URL,
 };
