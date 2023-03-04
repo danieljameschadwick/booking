@@ -5,7 +5,7 @@ import { CheckoutForm } from "./form/CheckoutForm";
 import { CheckoutFormProvider } from "./form/CheckoutFormContext";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 

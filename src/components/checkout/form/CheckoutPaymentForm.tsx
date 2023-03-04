@@ -6,6 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useBooking } from "../../../state/booking";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 interface Form {
   fullName: string | null;
@@ -14,6 +15,7 @@ interface Form {
 }
 
 export const CheckoutPaymentForm = () => {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const { setBooking } = useBooking();
@@ -61,6 +63,18 @@ export const CheckoutPaymentForm = () => {
     });
   }, [stripe]);
 
+  const resetStep = () => {
+    // do some logic to go to the next step
+    // probably just paginate with a basic layout
+    // e.g. step 1 /checkout/1, step 2 is /checkout/2
+
+    // @TODO: add reducer to CheckoutForm
+    setCheckoutForm((prevState) => ({
+      ...prevState,
+      step: 0,
+    }));
+  };
+
   const handleStep = () => {
     // do some logic to go to the next step
     // probably just paginate with a basic layout
@@ -90,13 +104,29 @@ export const CheckoutPaymentForm = () => {
     //   details: form,
     // }));
 
-    const { error } = await stripe.confirmPayment({
+    const { error, paymentIntent = null } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: `${process.env.NEXT_PUBLIC_URL}/checkout/confirmation`,
       },
+      redirect: 'if_required',
     });
+
+    if (paymentIntent) {
+      console.log('successful payment');
+      console.log(paymentIntent);
+  
+      resetStep();
+      // @TODO: update booking with paymebt info
+      // await updateBookingPayment(booking, paymentIntent);
+
+      router.push({
+        pathname: `/checkout/confirmation`,
+      });
+
+      return;
+    }
 
     // @TODO: handleStep/resetStep should happen on the confirmation page,
     //   no further steps needed after this so it should reset booking state

@@ -10,6 +10,7 @@ const calculateOrderAmount = (location) => {
   return 1400;
 };
 
+// @TODO: move to tRPC
 export default async function handler(req, res) {
   const { booking } = req.body;
   const { details, location } = booking;

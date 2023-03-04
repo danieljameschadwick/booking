@@ -27,9 +27,7 @@ export const BookingModal = ({ handleClose }: Props) => {
 
   const handleCheckout = () => {
     setBooking({
-      id,
       type: BOOKING_TYPE.SPORT, // @TODO: set this from landing page/form
-      name,
       location,
     });
 

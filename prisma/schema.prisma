@@ -22,12 +22,29 @@ model Site {
 
 model Booking {
     id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    type      String
+    // @TODO: migrate to relation
+    location  Location
+    details   Details
+    payment   Payment
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
 
-model Location {
-    id        String   @id @default(auto()) @map("_id") @db.ObjectId
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+// @TODO: will be migrated to relation, rather than a composite
+type Location {
+    id      String
+    name    String
+    address String
+    image   String
+}
+
+type Details {
+    fullName    String
+    email       String
+    phoneNumber String
+}
+
+type Payment {
+    clientSecret String
 }

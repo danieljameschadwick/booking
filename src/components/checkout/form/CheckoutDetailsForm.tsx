@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useBooking } from "../../../state/booking";
+import { saveBooking } from "./actions";
 import { useCheckoutForm } from "./CheckoutFormContext";
 
 interface Form {
@@ -9,7 +10,8 @@ interface Form {
 }
 
 export const CheckoutDetailsForm = () => {
-  const { details: defaultDetails = null, setBooking } = useBooking();
+  const booking = useBooking();
+  const { details: defaultDetails = null, setBooking } = booking;
   const { setCheckoutForm } = useCheckoutForm();
   const {
     fullName: defaultFullName = null,
@@ -34,12 +36,19 @@ export const CheckoutDetailsForm = () => {
     }));
   };
 
-  const onSubmit = (event: React.FormEvent) => {
+  const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     setBooking((prevState) => ({
       ...prevState,
       details: form,
+    }));
+
+    const persistedBooking = await saveBooking(booking);
+
+    setBooking((prevState) => ({
+      ...prevState,
+      id: persistedBooking.id,
     }));
 
     handleStep();
